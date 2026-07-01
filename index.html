@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://googleapis.com" />
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link
+      href="https://googleapis.com/css2?family=Noto+Color+Emoji&display=swap"
+      rel="stylesheet"
+    />
+    <title>Home</title>
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <div class="topbar__logo">Life<span>Spend</span></div>
+        <nav class="topbar__nav">
+          <a href="index.html">Home</a>
+          <a href="sign-up-page/sign-up.html">Statistic</a>
+        </nav>
+        <div class="topbar__controls">
+          <select name="month" id="select_month">
+            <option value="june">June 2026</option>
+            <option value="may">May 2026</option>
+          </select>
+          <button class="avatar-btn">VP</button>
+        </div>
+      </header>
+      <main class="layout">
+        <section class="form-card">
+          <h2>New spending</h2>
+          <label for="amount">AMOUNT</label>
+          <input type="number" id="amount" name="amount" placeholder="0.00" />
+          <label for="desc">DESCRIPTION</label>
+          <input
+            type="text"
+            id="desc"
+            name="desc"
+            placeholder="For instance: protein, juice, etc..."
+          />
+          <label>CATEGORY</label>
+          <div class="form-card__categories">
+            <button class="hovering">
+              <p>🍕 Food</p>
+            </button>
+            <button class="hovering">
+              <p>🏋️ Sport</p>
+            </button>
+            <button class="hovering">
+              <p>💊 Health</p>
+            </button>
+            <button class="hovering">
+              <p>📦 Other</p>
+            </button>
+          </div>
+          <label>DATE</label>
+          <input type="date" value="form_date" id="date" />
+          <br />
+          <button class="add-btn hovering">+ Add spend</button>
+        </section>
+        <div class="right-col">
+          <div class="summary">
+            <div class="summary-item">
+              <p>For June</p>
+              <p>₴842</p>
+              <p>Having 1200₴ budget</p>
+            </div>
+            <div class="summary-item">
+              <p>Left</p>
+              <p>₴358</p>
+              <p>To the end of this month</p>
+            </div>
+            <div class="summary-item">
+              <p>Todays spends</p>
+              <p>3</p>
+              <p>In total ₴124</p>
+            </div>
+          </div>
+          <div class="filter">
+            <p>Filter:</p>
+            <button class="hovering">All</button>
+            <button class="hovering">🍕 Food</button>
+            <button class="hovering">🏋️ Sport</button>
+            <button class="hovering">💊 Health</button>
+            <button class="hovering">📦 Other</button>
+          </div>
+          <div class="expenses">
+            <ul class="expense-list">
+              <li class="expense-item">
+                <div class="expense-item__icon">
+                  <p>🍕</p>
+                </div>
+                <div class="expense-item__info">
+                  <span class="expense-item__name">Eating in cafe</span>
+                  <span class="expense-item__date">Food - 21 June</span>
+                </div>
+                <span class="expense-amount">₴18</span>
+                <button class="expense-item__remove-btn hovering">✖️</button>
+              </li>
+              <li class="expense-item">
+                <div class="expense-item__icon">
+                  <p>🏋️</p>
+                </div>
+                <div class="expense-item__info">
+                  <span class="expense-item__name">Gym abonement</span>
+                  <span class="expense-item__date">Sport - 20 June</span>
+                </div>
+                <span class="expense-amount">₴45</span>
+                <button class="expense-item__remove-btn hovering">✖️</button>
+              </li>
+              <li class="expense-item">
+                <div class="expense-item__icon">
+                  <p>💊</p>
+                </div>
+                <div class="expense-item__info">
+                  <span class="expense-item__name">Vitamines</span>
+                  <span class="expense-item__date">Health - 20 June</span>
+                </div>
+                <span class="expense-amount">₴22</span>
+                <button class="expense-item__remove-btn hovering">✖️</button>
+              </li>
+              <li class="expense-item">
+                <div class="expense-item__icon">
+                  <p>🍕</p>
+                </div>
+                <div class="expense-item__info">
+                  <span class="expense-item__name">Products</span>
+                  <span class="expense-item__date">Food - 19 June</span>
+                </div>
+                <span class="expense-amount">₴61</span>
+                <button class="expense-item__remove-btn hovering">✖️</button>
+              </li>
+              <li class="expense-item">
+                <div class="expense-item__icon">
+                  <p>🏋️</p>
+                </div>
+                <div class="expense-item__info">
+                  <span class="expense-item__name">Protein</span>
+                  <span class="expense-item__date">Food - 18 June</span>
+                </div>
+                <span class="expense-amount">₴39</span>
+                <button class="expense-item__remove-btn hovering">✖️</button>
+              </li>
+              <li class="expense-item">
+                <div class="expense-item__icon">
+                  <p>📦</p>
+                </div>
+                <div class="expense-item__info">
+                  <span class="expense-item__name">Headphones</span>
+                  <span class="expense-item__date">Food - 17 June</span>
+                </div>
+                <span class="expense-amount">₴89</span>
+                <button class="expense-item__remove-btn hovering">✖️</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

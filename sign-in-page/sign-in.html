@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="sign-in.css" />
+    <title>Sign in</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-logo">Life<span>Spend</span></div>
+      <div class="login-underlogo">
+        <span>Log in into your account</span>
+      </div>
+      <form class="login-form" action="#" method="post">
+        <div class="login-form__email">
+          <label for="email">EMAIL</label>
+          <br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+          />
+        </div>
+        <div class="login-form__pass">
+          <label for="pass">PASSWORD</label>
+          <br />
+          <input
+            type="password"
+            id="pass"
+            name="pass"
+            placeholder="•••••••"
+            required
+          />
+        </div>
+        <button class="login-btn hovering">Log in</button>
+        <p>Or</p>
+        <button class="login-google-btn hovering">🔑 Log in via Gmail</button>
+        <p class="login-form__signup">
+          Have no account yet?
+          <a href="register.html">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

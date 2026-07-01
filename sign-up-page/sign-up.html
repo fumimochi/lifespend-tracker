@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="sign-up.css" />
+    <title>Sign up</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="reg-logo">Life<span>Spend</span></div>
+      <div class="reg-underlogo">
+        <span>Create your account - it's free</span>
+      </div>
+      <form class="reg-form" action="#" method="post">
+        <div class="reg-form__name">
+          <label for="name">NAME</label>
+          <br />
+          <input
+            type="name"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+          />
+        </div>
+        <div class="reg-form__email">
+          <label for="email">EMAIL</label>
+          <br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+          />
+        </div>
+        <div class="reg-form__pass">
+          <label for="pass">PASSWORD</label>
+          <br />
+          <input
+            type="password"
+            id="pass"
+            name="pass"
+            placeholder="More than 8 symbols"
+            required
+          />
+          <div class="reg-form__pass">
+          <label for="montly-budget">MONTLY BUDGET</label>
+          <br />
+          <input
+            type="number"
+            id="montly-budget"
+            name="montly-budget"
+            placeholder="1200"
+            required
+          />
+        <button class="reg-btn hovering">Create an account</button>
+        <p class="reg-form__signup">
+          Already have an account?
+          <a href="register.html">Sign in</a>
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

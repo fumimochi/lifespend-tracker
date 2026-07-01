@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Inter', 'Noto Color Emoji', sans-serif;
+  font-size: 14px;
+  background-color: #c4c4c4;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  background-color: white;
+}
+
+.topbar__logo {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.topbar__logo span {
+  color: #50b57a;
+}
+
+.topbar__nav {
+  display: flex;
+  gap: 40px;
+}
+
+.topbar__nav a {
+  padding: 5px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: grey;
+}
+
+.topbar__nav a:active {
+  background-color: #d9ffdd;
+  color: #8deb9c;
+}
+
+.topbar__controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar__controls select {
+  width: 100px;
+  height: 30px;
+  color: white;
+  background-color: #302b2b;
+  border-radius: 5px;
+}
+
+.avatar-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border-color: transparent;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.short-stat {
+  grid-column: 1/3;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.graph {
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.top-spends {
+  grid-column: 1/3;
+}
+
+.cell {
+  flex: 1;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: grey;
+}
+
+.short-stat__label {
+  font-size: 16px;
+  color: #555555;
+  font-weight: 600;
+}
+
+.short-stat__cost {
+  font-size: 18px;
+  font-weight: 600px;
+  color: black;
+}
+
+.graph-categories {
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-categories h3 {
+  margin: 0 0 20px 0;
+}
+
+.graph-categories ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.graph-categories li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.graph-categories li:last-child {
+  border-bottom: none;
+}
+
+.graph-categories label {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.graph-categories h3 {
+  color: black;
+}
+
+.graph-categories progress {
+  flex: 1;
+  height: 8px;
+  appearance: none;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.graph-categories span:first-of-type {
+  width: 45px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.graph-categories span:last-of-type {
+  width: 35px;
+  text-align: right;
+  color: grey;
+}
+
+.graph-budget__title,
+.graph-budget__subtitle {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  color: black;
+}
+
+.graph-budget__subtitle {
+  margin-top: 15px;
+}
+
+.graph-budget__spent-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.graph-budget__progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  appearance: none;
+  overflow: hidden;
+}
+
+.graph-budget__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 13px;
+  color: grey;
+}
+
+.graph-budget__left {
+  color: #4caf7d;
+}
+
+.graph-budget__divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 15px 0;
+}
+
+.graph-budget__bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100px;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar-item__fill {
+  width: 30px;
+  background-color: #4caf7d;
+  border-radius: 4px 4px 0 0;
+  min-height: 0;
+}
+
+.bar-item__label {
+  font-size: 12px;
+  color: grey;
+}
+
+.top-spends__title {
+  color: black;
+}
+
+.top-spends__table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.top-spends__table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.top-spends__table tr:last-child {
+  border-bottom: none;
+}
+
+.top-spends__table td {
+  padding: 15px 0;
+}
+
+.top-spends__table td:first-child {
+  font-size: 16px;
+}
+
+.top-spends__table td:last-child {
+  text-align: right;
+  font-weight: 600;
+}
+
+.hovering:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
