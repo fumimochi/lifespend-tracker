@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/json-server/schema.json",
+  "users": [
+    {
+      "id": 1,
+      "name": "Vlad",
+      "email": "vlad@example.com",
+      "password": "password123",
+      "monthlyBudget": 1200,
+      "spendings": [
+        {
+          "id": 1,
+          "tag": "Dinner in cafeteria",
+          "category": "Food",
+          "amount": 200,
+          "date": "15-06-2026"
+        }
+      ]
+    }
+  ]
+}
