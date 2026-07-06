@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <title>Home</title>
-    <script src="main.js" defer></script>
+    <script src="main.js" type="module" defer></script>
   </head>
   <body>
     <div class="container">
@@ -43,16 +43,16 @@
           />
           <label>CATEGORY</label>
           <div class="form-card__categories">
-            <button class="hovering">
+            <button class="hovering" data-category="food">
               <p>🍕 Food</p>
             </button>
-            <button class="hovering">
+            <button class="hovering" data-category="sport">
               <p>🏋️ Sport</p>
             </button>
-            <button class="hovering">
+            <button class="hovering" data-category="health">
               <p>💊 Health</p>
             </button>
-            <button class="hovering">
+            <button class="hovering" data-category="other">
               <p>📦 Other</p>
             </button>
           </div>
@@ -81,81 +81,14 @@
           </div>
           <div class="filter">
             <p>Filter:</p>
-            <button class="hovering">All</button>
-            <button class="hovering">🍕 Food</button>
-            <button class="hovering">🏋️ Sport</button>
-            <button class="hovering">💊 Health</button>
-            <button class="hovering">📦 Other</button>
+            <button class="hovering" data-filter="all">All</button>
+            <button class="hovering" data-filter="food">🍕 Food</button>
+            <button class="hovering" data-filter="sport">🏋️ Sport</button>
+            <button class="hovering" data-filter="health">💊 Health</button>
+            <button class="hovering" data-filter="other">📦 Other</button>
           </div>
           <div class="expenses">
-            <ul class="expense-list">
-              <li class="expense-item">
-                <div class="expense-item__icon">
-                  <p>🍕</p>
-                </div>
-                <div class="expense-item__info">
-                  <span class="expense-item__name">Eating in cafe</span>
-                  <span class="expense-item__date">Food - 21 June</span>
-                </div>
-                <span class="expense-amount">₴18</span>
-                <button class="expense-item__remove-btn hovering">✖️</button>
-              </li>
-              <li class="expense-item">
-                <div class="expense-item__icon">
-                  <p>🏋️</p>
-                </div>
-                <div class="expense-item__info">
-                  <span class="expense-item__name">Gym abonement</span>
-                  <span class="expense-item__date">Sport - 20 June</span>
-                </div>
-                <span class="expense-amount">₴45</span>
-                <button class="expense-item__remove-btn hovering">✖️</button>
-              </li>
-              <li class="expense-item">
-                <div class="expense-item__icon">
-                  <p>💊</p>
-                </div>
-                <div class="expense-item__info">
-                  <span class="expense-item__name">Vitamines</span>
-                  <span class="expense-item__date">Health - 20 June</span>
-                </div>
-                <span class="expense-amount">₴22</span>
-                <button class="expense-item__remove-btn hovering">✖️</button>
-              </li>
-              <li class="expense-item">
-                <div class="expense-item__icon">
-                  <p>🍕</p>
-                </div>
-                <div class="expense-item__info">
-                  <span class="expense-item__name">Products</span>
-                  <span class="expense-item__date">Food - 19 June</span>
-                </div>
-                <span class="expense-amount">₴61</span>
-                <button class="expense-item__remove-btn hovering">✖️</button>
-              </li>
-              <li class="expense-item">
-                <div class="expense-item__icon">
-                  <p>🏋️</p>
-                </div>
-                <div class="expense-item__info">
-                  <span class="expense-item__name">Protein</span>
-                  <span class="expense-item__date">Food - 18 June</span>
-                </div>
-                <span class="expense-amount">₴39</span>
-                <button class="expense-item__remove-btn hovering">✖️</button>
-              </li>
-              <li class="expense-item">
-                <div class="expense-item__icon">
-                  <p>📦</p>
-                </div>
-                <div class="expense-item__info">
-                  <span class="expense-item__name">Headphones</span>
-                  <span class="expense-item__date">Food - 17 June</span>
-                </div>
-                <span class="expense-amount">₴89</span>
-                <button class="expense-item__remove-btn hovering">✖️</button>
-              </li>
-            </ul>
+            <ul class="expense-list"></ul>
           </div>
         </div>
       </main>
