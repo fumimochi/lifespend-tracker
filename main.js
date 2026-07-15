@@ -1,7 +1,7 @@
 import * as CONST from './consts/consts.js';
-import { renderItem } from './functions/render.js';
+import * as dateState from './functions/dateState.js';
+import { renderListItem, renderHomeStat } from './functions/render.js';
 import { getIcon } from './functions/storage.js';
-import { getSpentSum } from './functions/expenses.js';
 
 let spendsArr = [
   {
@@ -9,42 +9,56 @@ let spendsArr = [
     tag: 'Eating in cafe',
     category: 'Food',
     amount: 18,
-    date: '21.06.2026',
+    date: '21.07.2026',
   },
   {
     id: 2,
     tag: 'Gym abonement',
     category: 'Sport',
     amount: 45,
-    date: '20.06.2026',
+    date: '20.07.2026',
   },
   {
     id: 3,
     tag: 'Vitamines',
     category: 'Health',
     amount: 22,
-    date: '20.06.2026',
+    date: '20.07.2026',
   },
   {
     id: 4,
     tag: 'Products',
     category: 'Food',
     amount: 61,
-    date: '19.06.2026',
+    date: '19.07.2026',
   },
   {
     id: 5,
     tag: 'Protein',
     category: 'Sport',
     amount: 39,
-    date: '18.06.2026',
+    date: '09.07.2026',
   },
   {
     id: 6,
     tag: 'Headphones',
     category: 'Other',
     amount: 89,
-    date: '17.06.2026',
+    date: '08.07.2026',
+  },
+  {
+    id: 7,
+    tag: 'TV',
+    category: 'Other',
+    amount: 200,
+    date: '08.06.2026',
+  },
+  {
+    id: 8,
+    tag: 'Headphones',
+    category: 'Other',
+    amount: 89,
+    date: '08.07.2026',
   },
 ];
 
@@ -65,16 +79,14 @@ function clearForm() {
 }
 
 function renderLastSpends(arr) {
-  moneySpent = getSpentSum(arr);
-
   spendsList.innerHTML = arr
     .map((spend) => {
       const icon = getIcon(spend.category.toLowerCase());
       const monthNumber = parseInt(spend.date.split('.')[1]);
       const date =
-        spend.date.split('.')[0] + ' ' + CONST.setMonths[monthNumber - 1];
+        spend.date.split('.')[0] + ' ' + CONST.setOfMonths[monthNumber - 1];
 
-      return renderItem(spend, icon, date);
+      return renderListItem(spend, icon, date);
     })
     .join('');
 }
@@ -146,6 +158,10 @@ function initEventListeners() {
   });
 }
 
+dateState.updateCurrentDate();
+
 renderLastSpends(spendsArr);
 
 initEventListeners();
+
+renderHomeStat(spendsArr);

@@ -190,8 +190,11 @@ body {
 .graph-budget__spent-row {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin-bottom: 8px;
+}
+
+.graph-budget__spent-quantity {
+  margin-bottom: 5px;
 }
 
 .graph-budget__progress {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="statistic.css" />
     <title>Statistic</title>
+    <script type="module" src="./statistic.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -17,7 +18,7 @@
         <div class="topbar__controls">
           <select name="month" id="select_month">
             <option value="june">June 2026</option>
-            <option value="may">May 2026</option>
+            <option value="july">July 2026</option>
           </select>
           <button class="avatar-btn">VP</button>
         </div>
@@ -25,63 +26,38 @@
       <main class="layout">
         <div class="short-stat">
           <div class="cell">
-            <p class="short-stat__label">Total for June</p>
-            <p class="short-stat__cost">₴842</p>
-            <p>21 transactions</p>
+            <p class="short-stat__label">
+              Total for <span class="label"></span>
+            </p>
+            <p class="short-stat__cost cost-total"></p>
+            <p><span class="short-stat__count"></span> transactions</p>
           </div>
           <div class="cell">
             <p class="short-stat__label">Average spend</p>
-            <p class="short-stat__cost">₴40</p>
+            <p class="short-stat__cost"><span class="cost-avg"></span></p>
             <p>for each transaction</p>
           </div>
           <div class="cell">
             <p class="short-stat__label">The highest spend</p>
-            <p class="short-stat__cost">₴120</p>
-            <p>Restaurant - June 5</p>
+            <p class="short-stat__cost"><span class="cost-highest"></span></p>
+            <p><span class="short-stat__date"></span></p>
           </div>
         </div>
         <div class="graph">
           <div class="graph-categories cell">
             <h3>By category</h3>
-            <ul>
-              <li>
-                <label for="category__food">🍕 Food</label>
-                <progress id="category__food" max="100" value="58">
-                  58%
-                </progress>
-                <span>₴489</span>
-                <span>58%</span>
-              </li>
-              <li>
-                <label for="category__sport">🏋️ Sport</label>
-                <progress id="category__sport" max="100" value="24">
-                  24%
-                </progress>
-                <span>₴202</span>
-                <span>24%</span>
-              </li>
-              <li>
-                <label for="category__health">💊 Health</label>
-                <progress id="category__health" max="100" value="11">
-                  11%
-                </progress>
-                <span>₴92</span>
-                <span>11%</span>
-              </li>
-              <li>
-                <label for="category__other">📦 Other</label>
-                <progress id="category__other" max="100" value="7">7%</progress>
-                <span>₴59</span>
-                <span>7%</span>
-              </li>
-            </ul>
+            <ul></ul>
           </div>
           <div class="graph-budget cell">
-            <h3 class="graph-budget__title">Budget for June</h3>
+            <h3 class="graph-budget__title">Budget for <span>June</span></h3>
 
             <div class="graph-budget__spent-row">
-              <span>Spent</span>
-              <span class="graph-budget__amount">₴842 / ₴1200</span>
+              <div class="graph-budget__spent-quantity">
+                <span>Spent</span>
+                <span class="graph-budget__left"></span>
+                /
+                <span class="graph-budget__total"></span>
+              </div>
 
               <progress
                 class="graph-budget__progress"
@@ -90,7 +66,7 @@
               ></progress>
 
               <div class="graph-budget__meta">
-                <span class="graph-budget__percent">70% of budget</span>
+                <span class="graph-budget__percent"></span>
                 <span class="graph-budget__left">left ₴358</span>
               </div>
 
@@ -98,36 +74,7 @@
 
               <h3 class="graph-budget__subtitle">By day this week</h3>
 
-              <div class="graph-budget__bars">
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 60px"></div>
-                  <span class="bar-item__label">Mon</span>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 0px"></div>
-                  <span class="bar-item__label">Tue</span>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 0px"></div>
-                  <span class="bar-item__label">Wed</span>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 0px"></div>
-                  <span class="bar-item__label">Thu</span>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 0px"></div>
-                  <span class="bar-item__label">Fri</span>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 0px"></div>
-                  <span class="bar-item__label">Sat</span>
-                </div>
-                <div class="bar-item">
-                  <div class="bar-item__fill" style="height: 0px"></div>
-                  <span class="bar-item__label">Sun</span>
-                </div>
-              </div>
+              <div class="graph-budget__bars"></div>
             </div>
           </div>
         </div>
@@ -136,33 +83,7 @@
             <h3>Top spends for this month</h3>
           </div>
           <div class="top-spends__table">
-            <table>
-              <tr>
-                <td>🍕 Reastaurant with friends</td>
-                <td>June 5</td>
-                <td>₴120</td>
-              </tr>
-              <tr>
-                <td>🏋️ Abonement to the gym</td>
-                <td>June 1</td>
-                <td>₴90</td>
-              </tr>
-              <tr>
-                <td>📦 Headphones</td>
-                <td>June 17</td>
-                <td>₴89</td>
-              </tr>
-              <tr>
-                <td>🍕 Products for the week</td>
-                <td>June 14</td>
-                <td>75</td>
-              </tr>
-              <tr>
-                <td>🏋️ 2kg of protein</td>
-                <td>June 10</td>
-                <td>₴62</td>
-              </tr>
-            </table>
+            <table></table>
           </div>
         </div>
       </main>
