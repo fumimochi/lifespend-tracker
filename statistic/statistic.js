@@ -11,8 +11,9 @@ import {
   filteredByMonth,
   getTotalsByCategory,
   getTotalAmount,
+  getHighestSpend,
 } from '../functions/expenses.js';
-import { getWeeklyChartData } from '../functions/storage.js';
+import { getWeekdayChartData, getVisibleSpends } from '../functions/storage.js';
 
 let spendsArr = [
   {
@@ -61,32 +62,27 @@ let spendsArr = [
     id: 7,
     tag: 'TV',
     category: 'Other',
-    amount: 200,
+    amount: 400,
     date: '08.06.2026',
   },
   {
     id: 8,
-    tag: 'Headphones',
-    category: 'Other',
+    tag: 'Pancakes',
+    category: 'Food',
     amount: 89,
-    date: '08.07.2026',
+    date: '05.06.2026',
   },
 ];
-
 let filtered = [];
 const topList = document.querySelector('.top-spends__table table');
 const catChart = document.querySelector('.graph-categories ul');
 const budgetChart = document.querySelector('.graph-budget__bars');
-
-function filterCategories() {
-  filtered = [...filteredByMonth(spendsArr, getMonth())];
-}
+const monthSelect = document.querySelector('#select_month');
+let selectedFilter = 'all';
 
 function callTableRender() {
-  filterCategories();
-
-  const total = getTotalAmount(spendsArr);
-  const categories = getTotalsByCategory(spendsArr);
+  const total = getTotalAmount(filtered);
+  const categories = getTotalsByCategory(filtered);
 
   for (let c in categories) {
     categories[c] = {
@@ -104,16 +100,15 @@ function callTableRender() {
 }
 
 function callBudgetRender() {
-  filterCategories();
-
   const spent = getTotalAmount(filtered);
   const left = CONST.budget - spent;
   const percentageLeft = Math.round((spent * 100) / CONST.budget);
-  const spendsByDay = getWeeklyChartData(filtered);
+  const spendsByDay = getWeekdayChartData(filtered);
+  const highest = getHighestSpend(filtered).amount;
 
   budgetChart.innerHTML = Object.entries(spendsByDay)
     .map(([key, value]) => {
-      return renderBudgetChart(key, value);
+      return renderBudgetChart(key, value, highest);
     })
     .join('');
 
@@ -126,7 +121,7 @@ function callBudgetRender() {
 }
 
 function initPage() {
-  filterCategories();
+  filtered = getVisibleSpends(spendsArr);
 
   const month = CONST.setOfMonths.find((m) => m.startsWith(getMonth()));
   const tableHtml = filtered
@@ -141,9 +136,18 @@ function initPage() {
 
   topList.innerHTML = tableHtml;
 
-  renderStatFields(spendsArr);
+  renderStatFields(filtered);
   callTableRender();
   callBudgetRender();
 }
+
+monthSelect.addEventListener('change', (e) => {
+  const chosenMonth = e.target.value;
+  const formatedMonth =
+    chosenMonth.charAt(0).toUpperCase() + chosenMonth.slice(1, 3);
+
+  setMonth(formatedMonth);
+  initPage();
+});
 
 initPage();

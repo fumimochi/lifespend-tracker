@@ -17,8 +17,8 @@
         </nav>
         <div class="topbar__controls">
           <select name="month" id="select_month">
-            <option value="june">June 2026</option>
-            <option value="july">July 2026</option>
+            <option value="Jun">June 2026</option>
+            <option value="Jul">July 2026</option>
           </select>
           <button class="avatar-btn">VP</button>
         </div>
@@ -54,9 +54,9 @@
             <div class="graph-budget__spent-row">
               <div class="graph-budget__spent-quantity">
                 <span>Spent</span>
-                <span class="graph-budget__left"></span>
+                <span class="graph-budget__spent-left"></span>
                 /
-                <span class="graph-budget__total"></span>
+                <span class="graph-budget__spent-total"></span>
               </div>
 
               <progress
@@ -67,12 +67,15 @@
 
               <div class="graph-budget__meta">
                 <span class="graph-budget__percent"></span>
-                <span class="graph-budget__left">left ₴358</span>
+                <div>
+                  <span>left</span>
+                  <span class="graph-budget__left">₴358</span>
+                </div>
               </div>
 
               <hr class="graph-budget__divider" />
 
-              <h3 class="graph-budget__subtitle">By day this week</h3>
+              <h3 class="graph-budget__subtitle">By day of week</h3>
 
               <div class="graph-budget__bars"></div>
             </div>

@@ -1,7 +1,8 @@
 import * as CONST from './consts/consts.js';
 import * as dateState from './functions/dateState.js';
 import { renderListItem, renderHomeStat } from './functions/render.js';
-import { getIcon } from './functions/storage.js';
+import { getIcon, getVisibleSpends } from './functions/storage.js';
+import { filteredByMonth } from './functions/expenses.js';
 
 let spendsArr = [
   {
@@ -50,26 +51,25 @@ let spendsArr = [
     id: 7,
     tag: 'TV',
     category: 'Other',
-    amount: 200,
+    amount: 400,
     date: '08.06.2026',
   },
   {
     id: 8,
-    tag: 'Headphones',
-    category: 'Other',
+    tag: 'Pancakes',
+    category: 'Food',
     amount: 89,
-    date: '08.07.2026',
+    date: '05.06.2026',
   },
 ];
 
-let spendsList = document.querySelector('.expense-list');
-let addBtn = document.querySelector('.add-btn');
-let categoryBtns = document.querySelectorAll('.form-card__categories button');
-let filterBtns = document.querySelectorAll('.filter button');
+const spendsList = document.querySelector('.expense-list');
+const addBtn = document.querySelector('.add-btn');
+const categoryBtns = document.querySelectorAll('.form-card__categories button');
+const filterBtns = document.querySelectorAll('.filter button');
+const monthSelect = document.querySelector('#select_month');
 let selectedCategory = null;
 let selectedFilter = 'all';
-let budget = 1200;
-let moneySpent = 0;
 
 function clearForm() {
   document.getElementById('amount').value = '';
@@ -85,10 +85,15 @@ function renderLastSpends(arr) {
       const monthNumber = parseInt(spend.date.split('.')[1]);
       const date =
         spend.date.split('.')[0] + ' ' + CONST.setOfMonths[monthNumber - 1];
-
       return renderListItem(spend, icon, date);
     })
     .join('');
+}
+
+function updateView() {
+  const visible = getVisibleSpends(spendsArr, selectedFilter);
+  renderLastSpends(visible);
+  renderHomeStat(spendsArr);
 }
 
 function addSpend() {
@@ -101,16 +106,15 @@ function addSpend() {
     return;
   }
 
-  const newSpend = {
+  spendsArr.push({
     id: Date.now(),
     tag: description,
     category: selectedCategory,
     amount: Number(amount),
     date: date.split('-').reverse().join('.'),
-  };
+  });
 
-  spendsArr.push(newSpend);
-  renderLastSpends(spendsArr);
+  updateView();
   clearForm();
 }
 
@@ -120,14 +124,8 @@ function initEventListeners() {
   spendsList.addEventListener('click', (event) => {
     if (event.target.className.includes('expense-item__remove-btn')) {
       const id = event.target.closest('.expense-item').dataset.id;
-
       spendsArr = spendsArr.filter((spend) => spend.id != id);
-
-      renderLastSpends(
-        selectedFilter == 'all'
-          ? spendsArr
-          : spendsArr.filter((i) => i.category.toLowerCase() == selectedFilter),
-      );
+      updateView();
     }
   });
 
@@ -135,7 +133,6 @@ function initEventListeners() {
     button.addEventListener('click', () => {
       categoryBtns.forEach((btn) => btn.classList.remove('active'));
       button.classList.add('active');
-
       selectedCategory = button.dataset.category;
     });
   });
@@ -144,24 +141,22 @@ function initEventListeners() {
     button.addEventListener('click', () => {
       filterBtns.forEach((btn) => btn.classList.remove('active'));
       button.classList.add('active');
-
-      if (button.dataset.filter === 'all') {
-        renderLastSpends(spendsArr);
-      } else {
-        selectedFilter = button.dataset.filter;
-        const filteredSpends = spendsArr.filter((spend) => {
-          return spend.category.toLowerCase() == selectedFilter;
-        });
-        renderLastSpends(filteredSpends);
-      }
+      selectedFilter = button.dataset.filter;
+      updateView();
     });
+  });
+
+  monthSelect.addEventListener('change', (e) => {
+    const chosenMonth = e.target.value;
+    const formatedMonth =
+      chosenMonth.charAt(0).toUpperCase() + chosenMonth.slice(1, 3);
+
+    dateState.setMonth(formatedMonth);
+    updateView();
   });
 }
 
-dateState.updateCurrentDate();
-
-renderLastSpends(spendsArr);
-
+dateState.initDate();
+monthSelect.value = dateState.getMonth().toLowerCase();
 initEventListeners();
-
-renderHomeStat(spendsArr);
+updateView();

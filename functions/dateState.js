@@ -1,8 +1,9 @@
 import * as CONST from '../consts/consts.js';
 
-export function updateCurrentDate() {
-  const date = new Date();
+export function initDate() {
+  if (localStorage.getItem('date')) return;
 
+  const date = new Date();
   const [month, day, year] = date.toDateString().split(' ').slice(1, 4);
   localStorage.setItem(
     'date',

@@ -1,5 +1,5 @@
 import * as CONST from '../consts/consts.js';
-import { getHighestSpend, getSpendsForMonth } from '../functions/expenses.js';
+import { getHighestSpend } from '../functions/expenses.js';
 import { getDay, getMonth } from './dateState.js';
 import { calcHomeStat, calcStatInfo } from './storage.js';
 
@@ -79,20 +79,24 @@ export function renderCategoryChart(item) {
 export function renderBudget({ ...info }) {
   const values = {
     '.graph-budget__title span': `${info.month}`,
-    '.graph-budget__left': `₴${info.spent}`,
-    '.graph-budget__total': `₴${CONST.budget}`,
+    '.graph-budget__spent-left': `₴${info.spent}`,
+    '.graph-budget__spent-total': `₴${CONST.budget}`,
     '.graph-budget__percent': `${info.percentageLeft}% of budget`,
+    '.graph-budget__left': `${CONST.budget - info.spent}`,
   };
 
   Object.entries(values).forEach(([selector, text]) => {
     document.querySelector(selector).textContent = text;
   });
+
+  document.querySelector('.graph-budget__progress').value =
+    (info.spent * 100) / CONST.budget;
 }
 
-export function renderBudgetChart(key, value) {
+export function renderBudgetChart(key, value, highest) {
   return `
     <div class="bar-item">
-      <div class="bar-item__fill" style="height: ${value}px"></div>
+      <div class="bar-item__fill" style="height: ${(value * 90) / highest}px"></div>
       <span class="bar-item__label">${key}</span>
     </div>
   `;
