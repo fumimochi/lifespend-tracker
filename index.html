@@ -2,98 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="preconnect" href="https://googleapis.com" />
-    <link rel="preconnect" href="https://gstatic.com" crossorigin />
-    <link
-      href="https://googleapis.com/css2?family=Noto+Color+Emoji&display=swap"
-      rel="stylesheet"
-    />
-    <title>Home</title>
-    <script src="main.js" type="module" defer></script>
+    <title>base</title>
   </head>
   <body>
-    <div class="container">
-      <header class="topbar">
-        <div class="topbar__logo">Life<span>Spend</span></div>
-        <nav class="topbar__nav">
-          <a href="/index.html">Home</a>
-          <a href="/statistic/statistic.html">Statistic</a>
-        </nav>
-        <div class="topbar__controls">
-          <select name="month" id="select_month">
-            <option value="Jun">June 2026</option>
-            <option value="Jul">July 2026</option>
-          </select>
-          <a href="/profile-page/profile.html">
-            <button class="avatar-btn hovering">VP</button>
-          </a>
-        </div>
-      </header>
-      <main class="layout">
-        <section class="form-card">
-          <h2>New spending</h2>
-          <label for="amount">AMOUNT</label>
-          <input type="number" id="amount" name="amount" placeholder="0.00" />
-          <label for="desc">DESCRIPTION</label>
-          <input
-            type="text"
-            id="desc"
-            name="desc"
-            placeholder="For instance: protein, juice, etc..."
-          />
-          <label>CATEGORY</label>
-          <div class="form-card__categories">
-            <button class="hovering" data-category="food">
-              <p>🍕 Food</p>
-            </button>
-            <button class="hovering" data-category="sport">
-              <p>🏋️ Sport</p>
-            </button>
-            <button class="hovering" data-category="health">
-              <p>💊 Health</p>
-            </button>
-            <button class="hovering" data-category="other">
-              <p>📦 Other</p>
-            </button>
-          </div>
-          <label>DATE</label>
-          <input type="date" value="form_date" id="date" />
-          <br />
-          <button class="add-btn hovering">+ Add spend</button>
-        </section>
-        <div class="right-col">
-          <div class="summary">
-            <div class="summary-item monthly">
-              <p>For <span class="monthly-label"></span></p>
-              <p class="monthly-value"></p>
-              <p>Having <span class="monthly-budget"></span> budget</p>
-            </div>
-            <div class="summary-item left">
-              <p>Left</p>
-              <p class="left-value"></p>
-              <p>To the end of this month</p>
-            </div>
-            <div class="summary-item todays">
-              <p>Todays spends</p>
-              <p class="todays-value"></p>
-              <p><span class="todays-total"></span> in total</p>
-            </div>
-          </div>
-          <div class="filter">
-            <p>Filter:</p>
-            <button class="hovering" data-filter="all">All</button>
-            <button class="hovering" data-filter="food">🍕 Food</button>
-            <button class="hovering" data-filter="sport">🏋️ Sport</button>
-            <button class="hovering" data-filter="health">💊 Health</button>
-            <button class="hovering" data-filter="other">📦 Other</button>
-          </div>
-          <div class="expenses">
-            <ul class="expense-list"></ul>
-          </div>
-        </div>
-      </main>
-    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
