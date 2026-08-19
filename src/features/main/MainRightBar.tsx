@@ -21,7 +21,7 @@ export default function MainRightBar() {
 
       <div className="flex gap-6 items-center flex-wrap bg-white shadow-sm rounded-2xl p-4 w-full max-w-2xl mt-5">
         <span className="text-gray-600">Filter:</span>
-        <button className="border rounded-2xl border-gray-200 bg-green-600 text-white py-1 px-4 hover:cursor-pointer opacity-100 hover:opacity-80 transition-opacity duration-300">
+        <button className="border rounded-2xl border-gray-200 bg-green-500 text-white py-1 px-4 hover:cursor-pointer opacity-100 hover:opacity-80 transition-opacity duration-300">
           All
         </button>
         <button className="border rounded-2xl border-gray-200 bg-gray-50 text-gray-700 py-1 px-4 hover:cursor-pointer opacity-100 hover:opacity-80 transition-opacity duration-300">

@@ -1,4 +1,12 @@
+import { NavLink, useNavigate } from 'react-router-dom';
+
 export default function Header() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    navigate('/login', { replace: true })
+  }
+
   return (
     <>
       <header className="flex justify-between items-center px-4 py-3 border-b border-gray-300 bg-white">
@@ -8,15 +16,25 @@ export default function Header() {
         </div>
 
         <div className="text-base">
-          <button className="w-max rounded-lg px-3 bg-green-200 text-emerald-500">
+          <NavLink
+            to="/"
+            className={(isActive) =>
+              `w-max rounded-lg px-3 py-1.5 ${isActive ? 'bg-emerald-500 text-white' : 'bg-green-200 text-emerald-500'}`
+            }
+          >
             Main
-          </button>
-          <button className="w-max ml-3 rounded-lg px-3 bg-green-200 text-emerald-500">
+          </NavLink>
+          <NavLink
+            to="/statistic"
+            className={(isActive) =>
+              `w-max ml-3 rounded-lg px-3 py-1.5 ${isActive ? 'bg-emerald-500 text-white' : 'bg-green-200 text-emerald-500'}`
+            }
+          >
             Statistic
-          </button>
+          </NavLink>
         </div>
 
-        <div>
+        <div className='flex items-center gap-2'>
           <select
             name="months"
             id="months"
@@ -27,7 +45,9 @@ export default function Header() {
             <option value="Aug">August 2026</option>
           </select>
 
-          <button className="ml-2">Profile</button>
+          <NavLink to="/profile" className="ml-2">Profile</NavLink>
+
+          <button onClick={handleLogout} title='Log out' className='ml-2 text-4xl hover:cursor-pointer'>🚪</button>
         </div>
       </header>
     </>

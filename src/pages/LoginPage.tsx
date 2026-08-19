@@ -1,35 +1,38 @@
+import { useId } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import FormField from '../components/FormField';
+
 export default function LoginPage() {
+  const emailId = useId();
+  const passId = useId();
+  const navigate = useNavigate();
+
+  function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
+
+    navigate('/', { replace: true });
+  }
+
   return (
     <>
-      <div className="mx-auto mt-24 py-15 flex flex-col items-center bg-white rounded-2xl shadow-sm w-sm ">
+      <div className="mx-auto mt-24 py-15 flex flex-col items-center bg-white rounded-2xl shadow-sm w-sm">
         <div className="text-2xl font-bold">
           <span>Life</span>
           <span className="text-emerald-500">Spend</span>
         </div>
         <span className="text-mist-600 text-sm">Log in to your account</span>
 
-        <div className="mt-6 flex flex-col">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="email" className="text-sm font-medium">
-              EMAIL
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="border h-7 rounded-sm px-3 py-2 bg-taupe-700 text-mist-400"
-            />
-          </div>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 w-full px-15 flex flex-col text-gray-500"
+        >
 
-          <div className="flex flex-col gap-1 mt-4">
-            <label htmlFor="pass" className="text-sm font-medium">
-              PASSWORD
-            </label>
-            <input
-              type="password"
-              id="pass"
-              className="border h-7 rounded-sm px-3 py-2 bg-taupe-700 text-mist-400"
-            />
-          </div>
+          <FormField id={emailId} name='email' label='EMAIL' type='email' required/>
+
+          <FormField id={passId} name='password' label='PASSWORD' type='password' required/>
 
           <a href="" className="text-xs text-emerald-500 text-right mt-1">
             Forgot password?
@@ -39,10 +42,13 @@ export default function LoginPage() {
             Login
           </button>
 
-          <a href="" className="text-xs text-emerald-500 text-right mt-1">
+          <Link
+            to="/register"
+            className="text-xs text-emerald-500 text-right mt-1"
+          >
             Dont have an account yet? Registrate here
-          </a>
-        </div>
+          </Link>
+        </form>
       </div>
     </>
   );
