@@ -1,12 +1,7 @@
-import Header from '../components/Header';
-
 export default function ProfilePage() {
   return (
     <div>
-      <Header />
-
       <div className="mt-10 flex flex-wrap justify-around gap-6">
-
         <div className="bg-white shadow-sm rounded-2xl p-6 w-full max-w-sm flex flex-col gap-5">
           <h2 className="font-bold text-lg">Profile</h2>
 

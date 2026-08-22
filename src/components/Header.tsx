@@ -1,10 +1,15 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
+import { useMonth } from '../context/MonthContext';
 
 export default function Header() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
+  const { month, setMonth } = useMonth();
 
   function handleLogout() {
-    navigate('/login', { replace: true })
+    setUser(null);
+    navigate('/login', { replace: true });
   }
 
   return (
@@ -34,20 +39,30 @@ export default function Header() {
           </NavLink>
         </div>
 
-        <div className='flex items-center gap-2'>
+        <div className="flex items-center gap-2">
           <select
             name="months"
             id="months"
+            value={month}
             className="h-7 text-white bg-taupe-700 rounded-sm"
+            onChange={(e) => setMonth(e.target.value)}
           >
             <option value="Jun">June 2026</option>
             <option value="Jul">July 2026</option>
             <option value="Aug">August 2026</option>
           </select>
 
-          <NavLink to="/profile" className="ml-2">Profile</NavLink>
+          <NavLink to="/profile" className="ml-2">
+            Profile
+          </NavLink>
 
-          <button onClick={handleLogout} title='Log out' className='ml-2 text-4xl hover:cursor-pointer'>🚪</button>
+          <button
+            onClick={handleLogout}
+            title="Log out"
+            className="ml-2 text-4xl hover:cursor-pointer"
+          >
+            🚪
+          </button>
         </div>
       </header>
     </>

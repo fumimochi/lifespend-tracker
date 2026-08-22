@@ -1,4 +1,3 @@
-import Header from '../components/Header';
 import StatisticByCategory from '../features/statistic/StatisticByCategory';
 import StatisticGraphForCurrentMonth from '../features/statistic/StatisticGraphForCurrentMonth';
 import StatisticInfoBars from '../features/statistic/StatisticInfoBars';
@@ -57,8 +56,6 @@ export default function StatisticPage() {
   const maxWeekValue = Math.max(...weekData) || 1;
   return (
     <>
-      <Header />
-
       <StatisticInfoBars />
 
       <div className="mt-6 flex flex-wrap justify-around gap-6">

@@ -1,21 +1,35 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormField from '../components/FormField';
+import { useUser } from '../context/UserContext';
+import { registerUser } from '../api/users';
+import { hashPassword } from '../api/client';
 
 export default function RegisterPage() {
   const emailId = useId();
   const passId = useId();
   const navigate = useNavigate();
+  const { setUser } = useUser();
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get('name');
-    const email = data.get('email');
-    const password = data.get('password');
-    const budget = data.get('budget');
+    setError(null);
 
-    navigate('/', { replace: true });
+    const data = new FormData(e.currentTarget);
+    const name = data.get('name') as string;
+    const email = data.get('email') as string;
+    const password = data.get('password') as string;
+    const hashedPassword = await hashPassword(password) as string;
+    const budget = Number(data.get('budget'));
+
+    try {
+      const user = await registerUser({ name, email, hashedPassword, budget });
+      setUser(user);
+      navigate('/', { replace: true });
+    } catch {
+      setError(`Haven't managed to create an account. Try once more.`);
+    }
   }
 
   return (
@@ -59,11 +73,19 @@ export default function RegisterPage() {
             required
           />
 
-          <button className="w-auto my-6 h-7 rounded-sm text-white bg-black hover:cursor-pointer">
+          {error && <p className="text-xs text-red-500 mt-2">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-auto my-6 h-7 rounded-sm text-white bg-black hover:cursor-pointer"
+          >
             Create account
           </button>
 
-          <Link to="/login" className="text-xs text-emerald-500 text-right mt-1">
+          <Link
+            to="/login"
+            className="text-xs text-emerald-500 text-right mt-1"
+          >
             Already have an account? Log in
           </Link>
         </form>

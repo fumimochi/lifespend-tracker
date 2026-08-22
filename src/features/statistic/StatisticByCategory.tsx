@@ -22,7 +22,7 @@ export default function StatisticByCategory() {
           <span>58%</span>
         </li>
         <li
-          key="food"
+          key="sport"
           className="grid grid-cols-[110px_1fr_50px_40px] items-center gap-3"
         >
           <label htmlFor="sport_progress" className="text-lg">
@@ -40,7 +40,7 @@ export default function StatisticByCategory() {
           <span>24%</span>
         </li>
         <li
-          key="food"
+          key="health"
           className="grid grid-cols-[110px_1fr_50px_40px] items-center gap-3"
         >
           <label htmlFor="health_progress" className="text-lg">
@@ -58,7 +58,7 @@ export default function StatisticByCategory() {
           <span>11%</span>
         </li>
         <li
-          key="food"
+          key="other"
           className="grid grid-cols-[110px_1fr_50px_40px] items-center gap-3"
         >
           <label htmlFor="other_progress" className="text-lg">

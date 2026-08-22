@@ -18,12 +18,12 @@ export default function StatisticTopSpendsList() {
           <span className="text-gray-500 text-sm">08 June</span>
           <span className="font-bold">$89</span>
         </li>
-        <li key={1} className="flex justify-between items-center">
+        <li key={3} className="flex justify-between items-center">
           <span className="flex items-center gap-2">🍕 Products</span>
           <span className="text-gray-500 text-sm">23 June</span>
           <span className="font-bold">$61</span>
         </li>
-        <li key={1} className="flex justify-between items-center">
+        <li key={4} className="flex justify-between items-center">
           <span className="flex items-center gap-2">🏋️ Gym abonement</span>
           <span className="text-gray-500 text-sm">20 July</span>
           <span className="font-bold">$45</span>

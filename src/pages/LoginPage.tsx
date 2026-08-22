@@ -1,19 +1,37 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import FormField from '../components/FormField';
+import { loginUser } from '../api/users';
+import { useUser } from '../context/UserContext';
 
 export default function LoginPage() {
   const emailId = useId();
   const passId = useId();
   const navigate = useNavigate();
+  const { setUser } = useUser();
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
+    setError(null);
 
-    navigate('/', { replace: true });
+    const data = new FormData(e.currentTarget);
+    const email = data.get('email') as string;
+    const password = data.get('password') as string;
+
+    try {
+      const user = await loginUser(email, password);
+
+      if (!user) {
+        setError('Invalid email or password');
+        return;
+      }
+
+      setUser(user);
+      navigate('/', { replace: true });
+    } catch {
+      setError('Unable to login. Try once more.');
+    }
   }
 
   return (
@@ -29,16 +47,32 @@ export default function LoginPage() {
           onSubmit={handleSubmit}
           className="mt-6 w-full px-15 flex flex-col text-gray-500"
         >
+          <FormField
+            id={emailId}
+            name="email"
+            label="EMAIL"
+            type="email"
+            required
+          />
 
-          <FormField id={emailId} name='email' label='EMAIL' type='email' required/>
-
-          <FormField id={passId} name='password' label='PASSWORD' type='password' required/>
+          <FormField
+            id={passId}
+            name="password"
+            label="PASSWORD"
+            type="password"
+            required
+          />
 
           <a href="" className="text-xs text-emerald-500 text-right mt-1">
             Forgot password?
           </a>
 
-          <button className="w-auto my-6 h-7 rounded-sm text-white bg-black hover:cursor-pointer">
+          {error && <p className="text-xs text-red-500 mt-2">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-auto my-6 h-7 rounded-sm text-white bg-black hover:cursor-pointer"
+          >
             Login
           </button>
 
