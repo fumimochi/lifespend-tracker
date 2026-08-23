@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import FormField from '../components/FormField';
 import { loginUser } from '../api/users';
 import { useUser } from '../context/UserContext';
+import { hashPassword } from '../api/client';
 
 export default function LoginPage() {
   const emailId = useId();
@@ -18,9 +19,10 @@ export default function LoginPage() {
     const data = new FormData(e.currentTarget);
     const email = data.get('email') as string;
     const password = data.get('password') as string;
+    const hashedPassword = await hashPassword(password);
 
     try {
-      const user = await loginUser(email, password);
+      const user = await loginUser(email, hashedPassword);
 
       if (!user) {
         setError('Invalid email or password');

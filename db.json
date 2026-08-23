@@ -1,8 +1,19 @@
 {
-  "posts": [
-    { "id": "1", "title": "Первый пост", "author": "Иван" },
-    { "id": "2", "title": "Второй пост", "author": "Анна" }
+  "users": [
+    {
+      "name": "Vlad",
+      "email": "vlad@example.com",
+      "hashedPassword": "489cd5dbc708c7e541de4d7cd91ce6d0f1613573b7fc5b40d3942ccb9555cf35",
+      "budget": 5,
+      "id": "i5PvkTdWM14"
+    },
+    {
+      "name": "Denis",
+      "email": "asdasd@gmail.com",
+      "hashedPassword": "465c3c23194873fbee91a53c74d628805ae0a84a91b9c44f630ee1d1d9e84db6",
+      "budget": 2000,
+      "id": "iAx8rJbEhho"
+    }
   ],
-  "comments": [{ "id": "1", "text": "Круто!", "postId": "1" }],
-  "users": []
+  "$schema": "./node_modules/json-server/schema.json"
 }

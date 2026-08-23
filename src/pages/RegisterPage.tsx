@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import FormField from '../components/FormField';
 import { useUser } from '../context/UserContext';
 import { registerUser } from '../api/users';
-import { hashPassword } from '../api/client';
+import { checkUserExist, hashPassword } from '../api/client';
 
 export default function RegisterPage() {
   const emailId = useId();
@@ -20,15 +20,19 @@ export default function RegisterPage() {
     const name = data.get('name') as string;
     const email = data.get('email') as string;
     const password = data.get('password') as string;
-    const hashedPassword = await hashPassword(password) as string;
+    const hashedPassword = (await hashPassword(password)) as string;
     const budget = Number(data.get('budget'));
 
     try {
+      const existing = await checkUserExist(email);
+      if (existing) throw new Error('User with such email already exists');
+
       const user = await registerUser({ name, email, hashedPassword, budget });
       setUser(user);
-      navigate('/', { replace: true });
-    } catch {
-      setError(`Haven't managed to create an account. Try once more.`);
+      navigate('/login', { replace: true });
+    } catch (err: unknown) {
+      if (err instanceof Error) setError(err.message);
+      else setError(`Haven't managed to create an account. Try once more.`);
     }
   }
 
@@ -47,7 +51,7 @@ export default function RegisterPage() {
           onSubmit={handleSubmit}
           className="mt-6 px-15 w-full flex flex-col text-gray-500"
         >
-          <FormField id="name" name="password" label="NAME" required />
+          <FormField id="name" name="name" label="NAME" required />
 
           <FormField
             id={emailId}
