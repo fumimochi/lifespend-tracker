@@ -25,7 +25,9 @@ export async function hashPassword(password: string): Promise<string> {
 }
 
 export async function checkUserExist(email: string): Promise<boolean> {
-  const response = await fetch(`${BASE_URL}/users?email=${email}`);
+  const response = await fetch(
+    `${BASE_URL}/users?email=${encodeURIComponent(email)}`,
+  );
   const users = await response.json();
 
   return !!users[0];

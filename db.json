@@ -4,15 +4,58 @@
       "name": "Vlad",
       "email": "vlad@example.com",
       "hashedPassword": "489cd5dbc708c7e541de4d7cd91ce6d0f1613573b7fc5b40d3942ccb9555cf35",
-      "budget": 5,
+      "budget": 1500,
       "id": "i5PvkTdWM14"
     },
     {
-      "name": "Denis",
+      "name": "denis",
       "email": "asdasd@gmail.com",
-      "hashedPassword": "465c3c23194873fbee91a53c74d628805ae0a84a91b9c44f630ee1d1d9e84db6",
-      "budget": 2000,
-      "id": "iAx8rJbEhho"
+      "hashedPassword": "b717dd763a3631d14d877f6c41ba1e53cd3a1a8c042e131c1ce7aa6f55676c6a",
+      "budget": 11,
+      "spends": [],
+      "id": "6OD7YokILKA"
+    }
+  ],
+  "spends": [
+    {
+      "id": "1",
+      "userId": "i5PvkTdWM14",
+      "amount": 61,
+      "category": "food",
+      "title": "Products",
+      "date": "23 August"
+    },
+    {
+      "id": "2",
+      "userId": "i5PvkTdWM14",
+      "amount": 400,
+      "category": "other",
+      "title": "TV",
+      "date": "13 August"
+    },
+    {
+      "id": "3",
+      "userId": "i5PvkTdWM14",
+      "amount": 18,
+      "category": "food",
+      "title": "Eating in cafe",
+      "date": "22 August"
+    },
+    {
+      "id": "4",
+      "userId": "i5PvkTdWM14",
+      "amount": 45,
+      "category": "sport",
+      "title": "Gym abonement",
+      "date": "20 August"
+    },
+    {
+      "id": "5",
+      "userId": "i5PvkTdWM14",
+      "amount": 74,
+      "category": "health",
+      "title": "Spazmolgon",
+      "date": "29 August"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

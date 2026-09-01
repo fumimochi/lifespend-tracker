@@ -5,14 +5,8 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import type { User } from '../types/types';
 
-export type User = {
-  id?: string;
-  name: string;
-  email: string;
-  hashedPassword: string;
-  budget?: number;
-};
 
 type UserContextValue = {
   user: User | null;

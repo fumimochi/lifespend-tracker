@@ -47,9 +47,9 @@ export default function Header() {
             className="h-7 text-white bg-taupe-700 rounded-sm"
             onChange={(e) => setMonth(e.target.value)}
           >
-            <option value="Jun">June 2026</option>
-            <option value="Jul">July 2026</option>
-            <option value="Aug">August 2026</option>
+            <option value="June">June 2026</option>
+            <option value="July">July 2026</option>
+            <option value="August">August 2026</option>
           </select>
 
           <NavLink to="/profile" className="ml-2">

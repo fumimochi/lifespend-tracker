@@ -1,22 +1,34 @@
-export default function StatisticGraphForCurrentMonth() {
+import { useEffect, useState } from 'react';
+
+export default function StatisticGraphForCurrentMonth({ month, info }) {
+  let [comp, setComp] = useState(null);
+
+  useEffect(() => {
+    info.then((e) => setComp(e));
+  }, []);
+
+  if (!comp) return null;
+
   return (
     <div className="bg-white shadow-sm p-5 rounded-2xl w-full max-w-md flex flex-col gap-4">
-      <p className="font-bold">Budget for June</p>
+      <p className="font-bold">Budget for {month}</p>
 
       <div>
         <div className="flex justify-between text-sm mb-1">
           <span className="text-gray-600">Spent</span>
-          <span className="font-medium">$842/$1200</span>
+          <span className="font-medium">
+            ${comp.spent}/${comp.total}
+          </span>
         </div>
 
         <progress
           max="100"
-          value="70"
+          value={comp.percentageSpent}
           className="w-full h-2 rounded-full overflow-hidden bg-gray-200"
         ></progress>
         <div className="flex justify-between text-sm my-1">
-          <span className="text-gray-500">70% of budget</span>
-          <span className="text-emerald-600">left $358</span>
+          <span className="text-gray-500">{comp.percentageSpent}% of budget</span>
+          <span className="text-emerald-600">left ${comp.left}</span>
         </div>
 
         <hr className="border-gray-100" />

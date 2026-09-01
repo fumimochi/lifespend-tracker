@@ -1,69 +1,52 @@
+import { useEffect, useMemo, useState } from 'react';
+import { useMonth } from '../context/MonthContext';
 import StatisticByCategory from '../features/statistic/StatisticByCategory';
 import StatisticGraphForCurrentMonth from '../features/statistic/StatisticGraphForCurrentMonth';
 import StatisticInfoBars from '../features/statistic/StatisticInfoBars';
 import StatisticTopSpendsList from '../features/statistic/StatisticTopSpendsList';
-
-const categories = [
-  {
-    key: 'food',
-    icon: '🍕',
-    label: 'Food',
-    amount: 489,
-    percent: 58,
-    color: 'bg-orange-400',
-  },
-  {
-    key: 'sport',
-    icon: '🏋️',
-    label: 'Sport',
-    amount: 202,
-    percent: 24,
-    color: 'bg-emerald-500',
-  },
-  {
-    key: 'health',
-    icon: '💊',
-    label: 'Health',
-    amount: 92,
-    percent: 11,
-    color: 'bg-red-400',
-  },
-  {
-    key: 'other',
-    icon: '📦',
-    label: 'Other',
-    amount: 59,
-    percent: 7,
-    color: 'bg-gray-400',
-  },
-];
-
-const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const weekData = [45, 0, 0, 0, 0, 0, 0];
-
-const topSpends = [
-  { icon: '🍕', label: 'Restaurant with friends', date: '5 June', amount: 120 },
-  { icon: '🏋️', label: 'Gym abonement', date: '1 June', amount: 90 },
-  { icon: '📦', label: 'Headphones', date: '17 June', amount: 89 },
-  { icon: '🍕', label: 'Weekly groceries', date: '14 June', amount: 75 },
-  { icon: '🏋️', label: 'Protein 2kg', date: '10 June', amount: 62 },
-];
+import type { Spend } from '../types/types';
+import getStorage from '../storage/storage';
+import {
+  calculateBars,
+  calculateByCategory,
+  calculateGraphData,
+  calculateTopSpends,
+} from '../functions/statCalculation';
+import { getSpendsByUser } from '../api/spends';
 
 export default function StatisticPage() {
-  const spent = 842;
-  const budget = 1200;
-  const percentOfBudget = Math.round((spent / budget) * 100);
-  const maxWeekValue = Math.max(...weekData) || 1;
+  const { month } = useMonth();
+  const [spends, setSpends] = useState<Spend[] | null>(null);
+
+
+  useEffect(() => {
+    const { id } = getStorage();
+    getSpendsByUser(id).then(setSpends);
+  }, []);
+
+  const stats = useMemo(() => {
+    if (!spends) return null;
+
+    return {
+      bars: calculateBars(spends),
+      byCategory: calculateByCategory(spends),
+      graph: calculateGraphData(spends),
+      topList: calculateTopSpends(spends),
+    };
+  }, [spends]);
+
+  if (!spends || !stats) return null;
+
   return (
     <>
-      <StatisticInfoBars />
+      <StatisticInfoBars month={month} info={stats.bars} />
 
       <div className="mt-6 flex flex-wrap justify-around gap-6">
-        <StatisticByCategory />
+        <StatisticByCategory info={stats.byCategory} />
 
-        <StatisticGraphForCurrentMonth />
+        <StatisticGraphForCurrentMonth month={month} info={stats.graph} />
 
-        <StatisticTopSpendsList />
+        <StatisticTopSpendsList info={stats.topList} />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import type { User } from '../context/UserContext';
+import type { User } from '../types/types';
 import { apiRequest } from './client';
 
 export function registerUser(data: Omit<User, 'id'>) {
@@ -8,11 +8,12 @@ export function registerUser(data: Omit<User, 'id'>) {
   });
 }
 
-export async function loginUser(email: string, password: string) {
+export async function loginUser(email: string, hashedPassword: string) {
+  const matches = await apiRequest<User[]>(
+    `/users?email=${encodeURIComponent(email)}&hashedPassword=${encodeURIComponent(hashedPassword)}`,
+  );
 
-  const matches = await fetch(`/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent('qweqwe')}`);
-
-  return matches ? matches : null;
+  return matches[0] ?? null;
 }
 
 export function changeUserInfo(data: Omit<User, 'id'>) {
@@ -22,6 +23,8 @@ export function changeUserInfo(data: Omit<User, 'id'>) {
   });
 }
 
-export function addSpend() {}
+export async function getUserBudget(email: string) {
+  const user = await apiRequest<User>(`/users?email=${encodeURIComponent(email)}`)
 
-export function removeSpend() {}
+  return user[0].budget ?? null;
+}
