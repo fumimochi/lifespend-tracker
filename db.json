@@ -23,15 +23,7 @@
       "amount": 61,
       "category": "food",
       "title": "Products",
-      "date": "23 August"
-    },
-    {
-      "id": "2",
-      "userId": "i5PvkTdWM14",
-      "amount": 400,
-      "category": "other",
-      "title": "TV",
-      "date": "13 August"
+      "date": "01-09-2026"
     },
     {
       "id": "3",
@@ -39,7 +31,7 @@
       "amount": 18,
       "category": "food",
       "title": "Eating in cafe",
-      "date": "22 August"
+      "date": "03-09-2026"
     },
     {
       "id": "4",
@@ -47,15 +39,23 @@
       "amount": 45,
       "category": "sport",
       "title": "Gym abonement",
-      "date": "20 August"
+      "date": "11-09-2026"
     },
     {
-      "id": "5",
+      "id": "OG9AFBbK22A",
       "userId": "i5PvkTdWM14",
-      "amount": 74,
+      "amount": 400,
+      "category": "other",
+      "title": "TV",
+      "date": "23-09-2026"
+    },
+    {
+      "id": "OvZhc1HG4Jk",
+      "userId": "i5PvkTdWM14",
+      "amount": 53,
       "category": "health",
-      "title": "Spazmolgon",
-      "date": "29 August"
+      "title": "Aspirin",
+      "date": "09-09-2001"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

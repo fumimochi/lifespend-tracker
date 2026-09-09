@@ -1,6 +1,6 @@
 import { getUserBudget } from '../api/users';
 import getStorage from '../storage/storage';
-import type { Spend } from '../types/types';
+import { Months, type Spend } from '../types/types';
 
 export function calculateBars(spends: Spend[]) {
   const total = spends.reduce((acc, current) => acc + current.amount, 0);
@@ -8,13 +8,14 @@ export function calculateBars(spends: Spend[]) {
   const biggest = spends.reduce((acc, current) => {
     return current.amount > acc.amount ? current : acc;
   }, spends[0]);
-
+  const date = biggest.date.split('-')[0] + ' ' + Months[Number(biggest.date.split('-')[1]) - 1]
+  
   return {
     total,
     transAmount: spends.length,
     avg,
     biggest: biggest.amount,
-    biggestDescription: `${biggest.title} - ${biggest.date}`,
+    biggestDescription: `${biggest.title} - ${date}`,
   };
 }
 

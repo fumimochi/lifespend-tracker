@@ -8,6 +8,7 @@ export type User = {
 
 export type Spend = {
   id: string;
+  userId: string;
   amount: number;
   category: 'food' | 'sport' | 'health' | 'other';
   title: string;

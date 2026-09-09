@@ -51,7 +51,8 @@ export default function RegisterPage() {
           onSubmit={handleSubmit}
           className="mt-6 px-15 w-full flex flex-col text-gray-500"
         >
-          <FormField id="name" name="name" label="NAME" required />
+          <FormField id="name" name="name" label="NAME" required 
+          inputHeight={1}/>
 
           <FormField
             id={emailId}
@@ -59,6 +60,7 @@ export default function RegisterPage() {
             label="EMAIL"
             type="email"
             required
+            inputHeight={1}
           />
 
           <FormField
@@ -67,6 +69,7 @@ export default function RegisterPage() {
             label="PASSWORD"
             type="password"
             required
+            inputHeight={1}
           />
 
           <FormField
@@ -75,6 +78,7 @@ export default function RegisterPage() {
             label="MONTHLY BUDGET"
             type="number"
             required
+            inputHeight={1}
           />
 
           {error && <p className="text-xs text-red-500 mt-2">{error}</p>}

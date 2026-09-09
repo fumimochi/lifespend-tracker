@@ -1,77 +1,116 @@
+import { useState } from 'react';
+import FormField from '../../components/FormField';
+import FilterButton from '../../components/FilterButton';
+import { Category, type Spend } from '../../types/types';
+import { addSpend } from '../../api/spends';
+import getStorage from '../../storage/storage';
+
+type categoryType = keyof typeof Category;
+
 export default function MainLeftBar() {
+  const [error, setError] = useState<string | null>(null);
+  const [categoryCreation, setCategoryCreation] =
+    useState<categoryType>('food');
+
+  async function handleSumbit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+
+    const data = new FormData(e.currentTarget);
+    const amount = data.get('amount') as string;
+    const desc = data.get('desc') as string;
+    const date = data.get('date') as string;
+    const { id } = getStorage();
+
+    const newSpend: Spend = {
+      id: '',
+      userId: id,
+      amount: Number(amount),
+      category: categoryCreation,
+      title: desc,
+      date: date.split('-').reverse().join('-'),
+    };
+
+    try {
+      console.log(newSpend)
+      addSpend(newSpend);
+    } catch {
+      setError(
+        'Unknown error with spend creation. Try to renew fields before sending.',
+      );
+    }
+  }
+
   return (
     <div className="flex flex-col gap-6 bg-white rounded-2xl px-6 pt-6 pb-15 h-fit shadow-sm w-full max-w-sm">
       <h1 className="font-bold text-2xl">New spend</h1>
+      <form onSubmit={handleSumbit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <FormField
+            type="number"
+            name="amount"
+            id="amount"
+            label="AMOUNT"
+            placeholder="0.00"
+            required
+          />
 
-      <div className="flex flex-col gap-2">
-        <label
-          htmlFor="sum"
-          className="text-gray-500 text-xs font-medium tracking-wide"
-        >
-          AMOUNT
-        </label>
-        <input
-          type="number"
-          id="sum"
-          placeholder="0.00"
-          className="border border-gray-700 rounded-lg px-3 py-3 bg-gray-800 text-white placeholder-gray-400"
-        />
-      </div>
+          <FormField
+            type="text"
+            name="desc"
+            id="desc"
+            label="DESCRIPTION"
+            placeholder="For instance: protein, lunch..."
+            required
+          />
 
-      <div className="flex flex-col gap-2">
-        <label
-          htmlFor="desc"
-          className="text-gray-500 text-xs font-medium tracking-wide"
-        >
-          DESCRIPTION
-        </label>
-        <input
-          type="text"
-          id="desc"
-          placeholder="For instance: protein, lunch..."
-          className="border border-gray-700 rounded-lg px-3 py-3 bg-gray-800 text-white placeholder-gray-400"
-        />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label className="text-gray-500 text-xs font-medium tracking-wide">
-          CATEGORY
-        </label>
-        <div className="grid grid-cols-2 gap-3">
-          <button className="flex items-center gap-2 justify-center h-11 border rounded-lg border-green-400 bg-green-50 text-green-700">
-            <span>🍕 Food</span>
-          </button>
-          <button className="flex items-center gap-2 justify-center h-11 border rounded-lg border-gray-200 bg-gray-50 text-gray-700">
-            <span>🏋️ Sport</span>
-          </button>
-          <button className="flex items-center gap-2 justify-center h-11 border rounded-lg border-gray-200 bg-gray-50 text-gray-700">
-            <span>💊 Health</span>
-          </button>
-          <button className="flex items-center gap-2 justify-center h-11 border rounded-lg border-gray-200 bg-gray-50 text-gray-700">
-            <span>📦 Other</span>
-          </button>
+          <FormField type="date" name="date" id="date" label="DATE" required />
         </div>
-      </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-gray-500 text-xs font-medium tracking-wide">
+            CATEGORY
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <FilterButton
+              typeOfButton="creation"
+              name="food"
+              title="🍕 Food"
+              filter={setCategoryCreation}
+              isActive={categoryCreation === 'food'}
+            />
 
-      <div className="flex flex-col gap-2">
-        <label
-          htmlFor="date"
-          className="text-gray-500 text-xs font-medium tracking-wide"
-        >
-          DATE
-        </label>
-        <input
-          type="date"
-          id="date"
-          min="2026-01-01"
-          max="2030-01-01"
-          className="border border-gray-700 rounded-lg px-3 py-3 bg-gray-800 text-white"
-        />
-      </div>
+            <FilterButton
+              typeOfButton="creation"
+              name="sport"
+              title="🏋️ Sport"
+              filter={setCategoryCreation}
+              isActive={categoryCreation === 'sport'}
+            />
 
-      <button className="h-12 bg-black rounded-lg text-white font-medium hover:cursor-pointer hover:bg-gray-800 transition-colors">
-        + Add spent
-      </button>
+            <FilterButton
+              typeOfButton="creation"
+              name="health"
+              title="💊 Health"
+              filter={setCategoryCreation}
+              isActive={categoryCreation === 'health'}
+            />
+
+            <FilterButton
+              typeOfButton="creation"
+              name="other"
+              title="📦 Other"
+              filter={setCategoryCreation}
+              isActive={categoryCreation === 'other'}
+            />
+          </div>
+        </div>
+
+        <button className="h-12 bg-black rounded-lg text-white font-medium hover:cursor-pointer hover:bg-gray-800 transition-colors">
+          + Add spent
+        </button>
+
+        {error && <p className="text-xs text-red-500 mt-2">{error}</p>}
+      </form>
     </div>
   );
 }

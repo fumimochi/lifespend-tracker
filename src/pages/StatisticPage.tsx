@@ -16,11 +16,10 @@ import { getSpendsByUser } from '../api/spends';
 
 export default function StatisticPage() {
   const { month } = useMonth();
+  const { id } = getStorage();
   const [spends, setSpends] = useState<Spend[] | null>(null);
 
-
   useEffect(() => {
-    const { id } = getStorage();
     getSpendsByUser(id).then(setSpends);
   }, []);
 

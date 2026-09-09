@@ -55,6 +55,7 @@ export default function LoginPage() {
             label="EMAIL"
             type="email"
             required
+            inputHeight={1}
           />
 
           <FormField
@@ -63,6 +64,7 @@ export default function LoginPage() {
             label="PASSWORD"
             type="password"
             required
+            inputHeight={1}
           />
 
           <a href="" className="text-xs text-emerald-500 text-right mt-1">

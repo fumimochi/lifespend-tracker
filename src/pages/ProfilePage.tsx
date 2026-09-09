@@ -78,7 +78,7 @@ export default function ProfilePage() {
                 <span className="font-medium">$9,842</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-500">Best nonth</span>
+                <span className="text-gray-500">Best month</span>
                 <span className="font-medium">June 2026</span>
               </div>
               <div className="flex justify-between">
